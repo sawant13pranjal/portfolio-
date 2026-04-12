@@ -11,24 +11,26 @@ const projects = [
   {
     title: "Amppere Cable",
     category: "UI/UX Design",
-    image: "/projects/ampere-cable-final.png",
+    image: "/projects/Amppere Cable.jpg",
     description:
-      "Redesigned the website for Amppere Cable to enhance user experience, improve product visibility, and create a modern, responsive interface aligned with the brand’s industrial identity..",
+      "Redesigned the website for Amppere Cable to enhance user experience, improve product visibility, and create a modern, responsive interface aligned with the brand’s industrial identity.",
     tags: ["Wireframing", "Website Redesign", "Figma"],
-    color: "#4F8EF7",
+    color: "#2dd4bf",
     year: "2026",
     details: "Designed the complete product line packaging, brand guidelines, and digital presence for Ampere Cable. The project involved creating a cohesive visual system that communicates premium quality and modern technology.",
+    link: "https://www.figma.com/proto/j6UQNaWrvbpguUrF1fD6LB/Amppere-cable?node-id=2239-3623&page-id=0%3A1&starting-point-node-id=2239%3A3623&t=4yHyg5XTbFB3l9kr-1",
   },
   {
     title: "CaseTorch",
-    category: "UI/UX Design",
-    image: "/projects/casetorch-final.png",
+    category: "AI Legal Platform",
+    image: "/projects/Casetorch.jpg",
     description:
-      "Designed a smart web platform for CaseTorch, enabling advocates to conduct faster legal research using AI, with an intuitive interface that simplifies case discovery and improves workflow efficiency.",
-    tags: ["UI/UX", "E-commerce", "Website"],
-    color: "#3366CC",
+      "A smart web platform for CaseTorch, enabling advocates to conduct faster legal research using AI for intuitive case discovery and improved workflow efficiency.",
+    tags: ["AI", "Legal Tech", "UI/UX", "Dashboard"],
+    color: "#0d9488",
     year: "2025",
-    details: "Built an intuitive shopping experience with a custom 3D phone case previewer. Users can upload their designs, preview in AR, and checkout seamlessly. Increased conversion rate by 35%.",
+    details: "Built an end-to-end legal intelligence platform featuring AI-powered case search, document management, and collaborative research tools for law firms. Optimized complex legal workflows to save researchers up to 15 hours per week.",
+    link: "https://www.figma.com/design/66Ii2pKtG1w1CBdWZHv4lA/Responsive-Ui-casetorch?node-id=0-1&t=DhCCsXWX3F2KbWin-1",
   },
   {
     title: "Netflix Clone",
@@ -37,9 +39,10 @@ const projects = [
     description:
       "A pixel-perfect recreation of the Netflix interface with responsive design, dynamic content loading, and smooth animations.",
     tags: ["Prototyping", "Figma", "Clone"],
-    color: "#E50914",
+    color: "#2dd4bf",
     year: "2023",
     details: "Full-stack Netflix clone with user authentication, dynamic movie browsing, and a custom recommendation engine. Built with React and integrated with TMDB API for real-time content.",
+    link: "https://www.figma.com/proto/gunaoJ8oaYWP3YMBP0JLyJ/Netflix-clone?node-id=20-47&viewport=175%2C291%2C0.12&t=HEZ3k0orB4O5jRFS-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=20%3A4&page-id=20%3A2",
   },
   {
     title: "SS Photo & Films",
@@ -48,21 +51,22 @@ const projects = [
     description:
       "A cinematic portfolio website for a photography and filmmaking studio with immersive gallery and smooth transitions.",
     tags: ["Figma", "Visual Design", "Wireframing"],
-    color: "#4F8EF7",
+    color: "#14b8a6",
     year: "2026",
     details: "Designed and developed a stunning portfolio website that showcases photography and film work through immersive galleries, parallax scrolling, and cinematic transitions. Built on Webflow.",
+    link: "https://www.figma.com/design/YxcAobcz5RtosVDIUTZDvp/SS-Design?node-id=0-1&t=DB3aMwPTDo1XR9Xz-1",
   },
   {
     title: "NAAC Portal",
     category: "Web Application",
-    image: "/projects/naac-portal-final.jpg",
+    image: "/projects/Naac.jpg",
     description:
       "Comprehensive college accreditation portal serving 200+ students and faculty with document management and reporting tools.",
     tags: ["UI/UX", "Dashboard", "Web Design"],
-    color: "#00C853",
+    color: "#0d9488",
     year: "2024",
     details: "End-to-end design and development of the NAAC accreditation portal for the college. Features include document management, automated report generation, faculty dashboards, and student portals.",
-    link: "https://www.figma.com/proto/udEn4GDKjqquldu76r6ZQd/NAAC-Accreditation?page-id=0%3A1&node-id=1-1123&p=f&viewport=144%2C243%2C0.02&t=sdAttUNmsWCNa3Ch-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1%3A40",
+    link: "https://www.figma.com/proto/NSA5vb0B6syZ5X4f4M8MSH/NAAC-Final?page-id=0%3A1&node-id=1-4&starting-point-node-id=1%3A4&scaling=contain&content-scaling=responsive&t=0Ip7k5Lr9oSp0oUX-1",
   },
 ]
 
@@ -88,6 +92,7 @@ export default function ProjectsSection() {
           end: () => `+=${totalWidth}`,
           scrub: 1,
           pin: true,
+          pinType: "transform",
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
@@ -108,7 +113,7 @@ export default function ProjectsSection() {
     // Move shine effect
     const shine = card.querySelector(".card-shine") as HTMLElement
     if (shine) {
-      shine.style.background = `radial-gradient(circle at ${e.clientX - rect.left}px ${e.clientY - rect.top}px, rgba(79,142,247,0.15) 0%, transparent 60%)`
+      shine.style.background = `radial-gradient(circle at ${e.clientX - rect.left}px ${e.clientY - rect.top}px, rgba(45,212,191,0.15) 0%, transparent 60%)`
     }
   }, [])
 
@@ -168,7 +173,7 @@ export default function ProjectsSection() {
                 transitionTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
               }}
             >
-              <div className="glass-card relative h-full overflow-hidden rounded-3xl transition-shadow duration-500 group-hover:shadow-[0_0_60px_-12px_oklch(0.65_0.18_250/0.3)]">
+              <div className="glass-card relative h-full overflow-hidden rounded-3xl transition-shadow duration-500 group-hover:shadow-[0_0_60px_-12px_oklch(0.72_0.16_185/0.3)]">
                 {/* Card shine overlay */}
                 <div className="card-shine pointer-events-none absolute inset-0 z-10 transition-all duration-200" />
 
@@ -200,18 +205,6 @@ export default function ProjectsSection() {
                       backgroundSize: "40px 40px",
                     }}
                   />
-
-                  {/* Big project number */}
-                  <span
-                    className="relative z-1 select-none text-[12rem] font-bold leading-none transition-all duration-700 group-hover:scale-110 group-hover:opacity-30 md:text-[15rem]"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      color: "transparent",
-                      WebkitTextStroke: `1px ${project.color}30`,
-                    }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
 
                   {/* Hover CTA */}
                   <div className="absolute inset-0 z-10 flex items-center justify-center opacity-0 transition-all duration-500 group-hover:opacity-100">
@@ -326,7 +319,7 @@ export default function ProjectsSection() {
                 href={selectedProject.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-[0_0_30px_oklch(0.65_0.18_250/0.3)]"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-[0_0_30px_oklch(0.72_0.16_185/0.3)]"
                 data-hover
               >
                 View Live <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

@@ -11,7 +11,7 @@ const skillCategories = [
       </svg>
     ),
     skills: ["Figma", "Adobe XD", "Photoshop", "Canva"],
-    color: "#A259FF",
+    color: "#2dd4bf",
   },
   {
     category: "Development",
@@ -21,7 +21,7 @@ const skillCategories = [
       </svg>
     ),
     skills: ["Antigravity", "Webflow", "Framer", "WordPress"],
-    color: "#4F8EF7",
+    color: "#0d9488",
   },
   {
     category: "UX Research",
@@ -31,7 +31,7 @@ const skillCategories = [
       </svg>
     ),
     skills: ["User Research", "Wireframing", "Prototyping", "Usability Testing", "Information Architecture"],
-    color: "#00C853",
+    color: "#14b8a6",
   },
   {
     category: "Tools",
@@ -41,7 +41,7 @@ const skillCategories = [
       </svg>
     ),
     skills: ["Git", "VS Code", "Notion"],
-    color: "#FF7262",
+    color: "#5eead4",
   },
 ]
 
@@ -61,12 +61,12 @@ export default function SkillsSection() {
   }, [])
 
   return (
-    <section id="skills" className="relative overflow-hidden py-32 md:py-40">
+    <section id="skills" className="relative overflow-hidden py-16 md:py-24">
       <div className="absolute right-0 bottom-0 -z-10 h-96 w-96 rounded-full bg-primary/5 blur-[120px]" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* Section label */}
-        <div className="skills-label mb-16 flex items-center gap-4">
+        <div className="skills-label mb-12 flex items-center gap-4">
           <div className="h-px w-12 bg-gradient-to-r from-primary to-transparent" />
           <span className="text-xs uppercase tracking-[0.3em] text-primary">
             Skills & Tools
@@ -85,7 +85,7 @@ export default function SkillsSection() {
           {skillCategories.map((cat) => (
             <div
               key={cat.category}
-              className="skill-card group relative overflow-hidden rounded-2xl border border-border/30 bg-card/40 p-6 backdrop-blur-sm transition-all duration-500 hover:border-primary/30 hover:shadow-[0_0_40px_-12px_oklch(0.65_0.18_250/0.2)]"
+              className="skill-card group relative overflow-hidden rounded-2xl border border-border/30 bg-card/40 p-6 backdrop-blur-sm transition-all duration-500 hover:border-primary/30 hover:shadow-[0_0_40px_-12px_oklch(0.72_0.16_185/0.2)]"
               onMouseMove={onCardMouseMove}
               data-hover
             >

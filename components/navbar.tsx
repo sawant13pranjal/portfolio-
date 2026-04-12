@@ -32,14 +32,18 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
         <button
           onClick={() => scrollTo("hero")}
-          className="text-lg font-bold tracking-tight text-foreground"
+          className="relative h-8 w-auto transition-transform hover:scale-110 active:scale-95"
           data-hover
         >
-          <span className="text-primary">P</span>S
+          <img 
+            src="/My NAME LGO.png" 
+            alt="Logo" 
+            className="h-full w-auto object-contain"
+          />
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
-          {["about", "experience", "projects", "skills", "awards", "contact"].map(
+          {["about", "experience", "projects", "contact"].map(
             (section) => (
               <button
                 key={section}

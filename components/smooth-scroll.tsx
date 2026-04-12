@@ -17,6 +17,7 @@ export default function SmoothScroll() {
 
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update)
+    ScrollTrigger.normalizeScroll(true)
 
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000)

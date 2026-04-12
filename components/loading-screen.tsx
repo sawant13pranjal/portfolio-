@@ -34,12 +34,27 @@ export default function LoadingScreen() {
         isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
-      <svg className="pl" width="240" height="240" viewBox="0 0 240 240">
-        <circle className="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" strokeWidth="20" strokeDasharray="0 660" strokeDashoffset="-330" strokeLinecap="round"></circle>
-        <circle className="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" strokeWidth="20" strokeDasharray="0 220" strokeDashoffset="-110" strokeLinecap="round"></circle>
-        <circle className="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" strokeWidth="20" strokeDasharray="0 440" strokeLinecap="round"></circle>
-        <circle className="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" strokeWidth="20" strokeDasharray="0 440" strokeLinecap="round"></circle>
-      </svg>
+      <div className="relative flex items-center justify-center">
+        {/* Rotating background aura */}
+        <div className="aura" />
+        
+        {/* Animated Logo */}
+        <div className="flex flex-col items-center">
+          <img 
+            src="/My NAME LGO.png" 
+            alt="Pranjal Sawant Logo"
+            className="animate-logo-loader relative z-10 w-32 h-auto object-contain"
+          />
+          
+          {/* Uiverse Dot Loader */}
+          <div className="loader">
+            <div className="loader__circle"></div>
+            <div className="loader__circle"></div>
+            <div className="loader__circle"></div>
+            <div className="loader__circle"></div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

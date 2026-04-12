@@ -150,15 +150,16 @@ export default function AnimationController() {
         ease: "power3.out",
       })
 
-      gsap.utils.toArray<HTMLElement>(".experience-card").forEach((card, i) => {
-        gsap.from(card, {
+      gsap.utils.toArray<HTMLElement>(".experience-item").forEach((item) => {
+        gsap.from(item, {
           scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
+            trigger: item,
+            start: "top 88%",
           },
           opacity: 0,
-          x: i % 2 === 0 ? -100 : 100,
-          duration: 1,
+          y: 60,
+          scale: 0.98,
+          duration: 1.2,
           ease: "power3.out",
         })
       })

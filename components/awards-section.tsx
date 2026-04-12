@@ -13,7 +13,7 @@ const awards = [
     numVal: 0,
     prefix: "",
     year: "2023",
-    color: "#3366CC",
+    color: "#2dd4bf",
   },
   {
     title: "Smart India Hackathon 2024",
@@ -24,7 +24,7 @@ const awards = [
     numVal: 0,
     prefix: "",
     year: "2024",
-    color: "#4F8EF7",
+    color: "#0d9488",
   },
   {
     title: "GD-PI Competition",
@@ -35,7 +35,7 @@ const awards = [
     numVal: 1,
     prefix: "#",
     year: "2026",
-    color: "#FFD700",
+    color: "#5eead4",
   },
   {
     title: "Debate Competition",
@@ -46,7 +46,7 @@ const awards = [
     numVal: 2,
     prefix: "#",
     year: "2024 & 2025",
-    color: "#A259FF",
+    color: "#14b8a6",
   },
 ]
 
@@ -107,12 +107,12 @@ export default function AwardsSection() {
   }, [])
 
   return (
-    <section id="awards" className="relative py-32 md:py-40">
-      <div className="absolute left-1/3 top-0 -z-10 h-96 w-96 rounded-full bg-[oklch(0.3_0.08_250/0.1)] blur-[120px]" />
+    <section id="awards" className="relative py-16 md:py-24">
+      <div className="absolute left-1/3 top-0 -z-10 h-96 w-96 rounded-full bg-[oklch(0.3_0.08_185/0.1)] blur-[120px]" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* Section label */}
-        <div className="awards-label mb-16 flex items-center gap-4">
+        <div className="awards-label mb-12 flex items-center gap-4">
           <div className="h-px w-12 bg-gradient-to-r from-primary to-transparent" />
           <span className="text-xs uppercase tracking-[0.3em] text-primary">
             Recognition
@@ -120,7 +120,7 @@ export default function AwardsSection() {
         </div>
 
         <h2
-          className="awards-title mb-20 text-4xl font-bold tracking-tight md:text-6xl"
+          className="awards-title mb-16 text-4xl font-bold tracking-tight md:text-6xl"
           style={{ fontFamily: "var(--font-display)" }}
         >
           Awards {"&"}
@@ -132,7 +132,7 @@ export default function AwardsSection() {
           {awards.map((award) => (
             <div
               key={award.title}
-              className="award-card group relative overflow-hidden border-b border-border/20 py-10 px-4 md:px-8 transition-all duration-500 hover:bg-card/20"
+              className="award-card group relative overflow-hidden border-b border-border/20 py-8 px-4 md:px-8 transition-all duration-500 hover:bg-card/20"
               onMouseMove={(e) => onCardMouseMove(e, award.color)}
               data-hover
             >
@@ -144,22 +144,22 @@ export default function AwardsSection() {
                 }}
               />
 
-              <div className="relative z-10 flex w-full flex-col gap-8 md:flex-row md:items-center md:gap-12">
+              <div className="relative z-10 flex w-full flex-col gap-6 md:flex-row md:items-center md:gap-12">
                 {/* Left side: Icon and Year */}
                 <div className="flex shrink-0 items-center gap-6 md:w-[25%]">
                   <div
-                    className="flex h-16 w-16 shadow-sm items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
+                    className="flex h-14 w-14 shadow-sm items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
                     style={{
                       background: `${award.color}15`,
                     }}
                   >
-                    <award.icon className="h-8 w-8" style={{ color: award.color }} />
+                    <award.icon className="h-7 w-7" style={{ color: award.color }} />
                   </div>
                   <div>
-                    <span className="mb-1 block text-sm font-semibold tracking-wider text-muted-foreground uppercase">
+                    <span className="mb-0.5 block text-xs font-semibold tracking-wider text-muted-foreground uppercase">
                       {award.year}
                     </span>
-                    <p className="text-lg font-bold" style={{ color: award.color }}>
+                    <p className="text-base font-bold" style={{ color: award.color }}>
                       {award.subtitle}
                     </p>
                   </div>
@@ -168,19 +168,21 @@ export default function AwardsSection() {
                 {/* Middle: Title & Description */}
                 <div className="flex w-full flex-col md:w-[45%]">
                   <h3
-                    className="mb-3 text-2xl font-bold text-foreground transition-colors group-hover:text-white md:text-3xl"
+                    className="mb-2 text-xl font-bold text-foreground transition-colors group-hover:text-white md:text-2xl"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {award.title}
                   </h3>
-                  <p className="max-w-xl text-base leading-relaxed text-muted-foreground">
+                  <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
                     {award.description}
                   </p>
                 </div>
 
-                {/* Right side: Animated Stat */}
+                {/* Right side: Static Stat (Removed numeric loading effect) */}
                 <div className="mt-2 flex shrink-0 md:mt-0 md:w-[30%] md:justify-end">
-                  <AnimatedStat award={award} />
+                  <div className="text-4xl font-bold md:text-5xl" style={{ fontFamily: "var(--font-display)", color: award.color }}>
+                    {award.numVal === 0 ? award.stat : `${award.prefix}${award.numVal}`}
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,9 +1,13 @@
 "use client"
 
-import { useRef, useMemo, useCallback } from "react"
+import { useRef, useMemo, useCallback, useLayoutEffect } from "react"
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
-import { Float, MeshDistortMaterial, MeshWobbleMaterial, Trail } from "@react-three/drei"
+import { Float, MeshTransmissionMaterial, MeshDistortMaterial, MeshWobbleMaterial, Environment, Center } from "@react-three/drei"
 import * as THREE from "three"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 // Mouse-reactive particle field
 function Particles({ count = 600 }: { count?: number }) {
@@ -86,7 +90,7 @@ function Particles({ count = 600 }: { count?: number }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.025}
-        color="#4F8EF7"
+        color="#2dd4bf"
         transparent
         opacity={0.7}
         sizeAttenuation
@@ -146,7 +150,7 @@ function ConnectedLines({ count = 100 }: { count?: number }) {
     <lineSegments ref={linesRef}>
       <bufferGeometry />
       <lineBasicMaterial
-        color="#4F8EF7"
+        color="#2dd4bf"
         transparent
         opacity={0.06}
         blending={THREE.AdditiveBlending}
@@ -156,162 +160,142 @@ function ConnectedLines({ count = 100 }: { count?: number }) {
   )
 }
 
-// Interactive icosahedron that follows mouse slowly
-function InteractiveIcosahedron() {
-  const ref = useRef<THREE.Mesh>(null!)
-  const target = useRef({ x: -3, y: 1.5 })
+// Refractive Crystal / Monolith that reacts to scroll
+function RefractiveCrystal() {
+  const meshRef = useRef<THREE.Mesh>(null!)
+  const innerMeshRef = useRef<THREE.Mesh>(null!)
+  const scrollProgress = useRef(0)
+
+  // Sync scroll with GSAP
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        onUpdate: (self) => {
+          scrollProgress.current = self.progress
+        },
+      })
+    })
+    return () => ctx.revert()
+  }, [])
 
   useFrame((state) => {
-    if (!ref.current) return
-    target.current.x = -3 + state.pointer.x * 0.5
-    target.current.y = 1.5 + state.pointer.y * 0.3
-    ref.current.position.x += (target.current.x - ref.current.position.x) * 0.02
-    ref.current.position.y += (target.current.y - ref.current.position.y) * 0.02
-    ref.current.rotation.x = state.clock.elapsedTime * 0.3
-    ref.current.rotation.y = state.clock.elapsedTime * 0.2
+    if (!meshRef.current) return
+    const t = state.clock.elapsedTime
+    const progress = scrollProgress.current
+
+    // Position and Rotation Keyframes based on scroll progress
+    // Hero (0): Center
+    // About (0.2): Slant left
+    // Experience (0.4): Slant right
+    // Projects (0.6): Deep Z (small)
+    // Contact (0.9): Center, large, intense glow
+
+    const targetPos = new THREE.Vector3()
+    const targetRot = new THREE.Euler()
+    let targetScale = 1
+
+    if (progress < 0.2) {
+      // Hero
+      const localP = progress / 0.2
+      targetPos.set(2, 0, -1)
+      targetRot.set(t * 0.2, t * 0.3, 0)
+      targetScale = 1.2
+    } else if (progress < 0.4) {
+      // About
+      const localP = (progress - 0.2) / 0.2
+      targetPos.set(-3, 0.5, -2)
+      targetRot.set(t * 0.3, t * 0.1, Math.PI / 4)
+      targetScale = 0.9
+    } else if (progress < 0.7) {
+      // Experience & Projects
+      const localP = (progress - 0.4) / 0.3
+      targetPos.set(3, -1, -3)
+      targetRot.set(t * 0.4, t * 0.2, -Math.PI / 6)
+      targetScale = 0.7
+    } else {
+      // Contact
+      const localP = (progress - 0.7) / 0.3
+      targetPos.set(0, 0, -1)
+      targetRot.set(t * 0.5, t * 0.5, t * 0.2)
+      targetScale = 1.5
+    }
+
+    // Mouse parallax effect
+    const mx = state.pointer.x * 0.5
+    const my = state.pointer.y * 0.5
+    targetPos.x += mx
+    targetPos.y += my
+
+    // Lerp values for smoothness
+    meshRef.current.position.lerp(targetPos, 0.05)
+    meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetRot.x, 0.05)
+    meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetRot.y, 0.05)
+    meshRef.current.rotation.z = THREE.MathUtils.lerp(meshRef.current.rotation.z, targetRot.z, 0.05)
+    meshRef.current.scale.setScalar(THREE.MathUtils.lerp(meshRef.current.scale.x, targetScale, 0.05))
+
+    // Inner core animation
+    if (innerMeshRef.current) {
+      innerMeshRef.current.rotation.x = -t * 0.5
+      innerMeshRef.current.rotation.z = -t * 0.3
+    }
   })
 
   return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1.5}>
-      <Trail width={1} length={4} color="#4F8EF7" attenuation={(t) => t * t}>
-        <mesh ref={ref} position={[-3, 1.5, -2]} scale={0.9}>
-          <icosahedronGeometry args={[1, 1]} />
-          <MeshDistortMaterial
-            color="#4F8EF7"
-            transparent
-            opacity={0.12}
-            wireframe
-            distort={0.4}
-            speed={3}
+    <group>
+      <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
+        <mesh ref={meshRef}>
+          <dodecahedronGeometry args={[1, 0]} />
+          <MeshTransmissionMaterial
+            backside
+            backsideThickness={1.5}
+            thickness={2}
+            samples={8}
+            transmission={1}
+            clearcoat={1}
+            clearcoatRoughness={0}
+            distortion={0.2}
+            distortionScale={0.3}
+            temporalDistortion={0.5}
+            ior={1.5}
+            color="#2dd4bf"
+            roughness={0}
+            attenuationDistance={0.5}
+            attenuationColor="#2dd4bf"
           />
         </mesh>
-      </Trail>
-    </Float>
-  )
-}
 
-// Pulsing torus that scales on mouse proximity
-function PulsingTorus() {
-  const ref = useRef<THREE.Mesh>(null!)
-
-  useFrame((state) => {
-    if (!ref.current) return
-    const t = state.clock.elapsedTime
-    ref.current.rotation.x = t * 0.2
-    ref.current.rotation.z = t * 0.15
-    // Pulse scale
-    const pulse = 1 + Math.sin(t * 2) * 0.08
-    ref.current.scale.setScalar(0.7 * pulse)
-  })
-
-  return (
-    <Float speed={1.5} rotationIntensity={2} floatIntensity={1.5}>
-      <mesh ref={ref} position={[3.5, -1, -3]} scale={0.7}>
-        <torusGeometry args={[1, 0.35, 32, 64]} />
-        <MeshWobbleMaterial
-          color="#1A3C6E"
-          transparent
-          opacity={0.18}
-          wireframe
-          factor={0.5}
-          speed={1.5}
-        />
-      </mesh>
-    </Float>
-  )
-}
-
-// Spinning octahedron with glow
-function SpinningOctahedron() {
-  const ref = useRef<THREE.Mesh>(null!)
-
-  useFrame((state) => {
-    if (!ref.current) return
-    ref.current.rotation.y = state.clock.elapsedTime * 0.4
-    ref.current.rotation.z = state.clock.elapsedTime * 0.15
-    ref.current.position.y = 2.5 + Math.sin(state.clock.elapsedTime * 0.8) * 0.3
-  })
-
-  return (
-    <mesh ref={ref} position={[2, 2.5, -4]} scale={0.55}>
-      <octahedronGeometry args={[1, 0]} />
-      <MeshDistortMaterial
-        color="#4F8EF7"
-        transparent
-        opacity={0.15}
-        wireframe
-        distort={0.25}
-        speed={4}
-      />
-    </mesh>
-  )
-}
-
-// Large background ring
-function BackgroundRing() {
-  const ref = useRef<THREE.Mesh>(null!)
-
-  useFrame((state) => {
-    if (!ref.current) return
-    ref.current.rotation.x = state.clock.elapsedTime * 0.05
-    ref.current.rotation.y = state.clock.elapsedTime * 0.08
-  })
-
-  return (
-    <mesh ref={ref} position={[0, 0, -6]} scale={3}>
-      <torusGeometry args={[1.5, 0.02, 16, 100]} />
-      <meshBasicMaterial color="#4F8EF7" transparent opacity={0.08} />
-    </mesh>
-  )
-}
-
-function DodecahedronFloat() {
-  const ref = useRef<THREE.Mesh>(null!)
-
-  useFrame((state) => {
-    if (!ref.current) return
-    ref.current.rotation.x = state.clock.elapsedTime * 0.15
-    ref.current.rotation.y = state.clock.elapsedTime * 0.35
-    ref.current.position.x = -2.5 + Math.sin(state.clock.elapsedTime * 0.5) * 0.2
-  })
-
-  return (
-    <Float speed={2.2} rotationIntensity={1.2} floatIntensity={1.8}>
-      <mesh ref={ref} position={[-2.5, -2, -2.5]} scale={0.55}>
-        <dodecahedronGeometry args={[1, 0]} />
-        <MeshWobbleMaterial
-          color="#3366CC"
-          transparent
-          opacity={0.1}
-          wireframe
-          factor={0.3}
-          speed={1.5}
-        />
-      </mesh>
-    </Float>
+        <mesh ref={innerMeshRef} scale={0.4}>
+          <octahedronGeometry args={[1, 0]} />
+          <meshBasicMaterial color="#2dd4bf" />
+        </mesh>
+      </Float>
+    </group>
   )
 }
 
 export default function Scene3D() {
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="fixed inset-0 z-0 pointer-events-none">
       <Canvas
-        camera={{ position: [0, 0, 6], fov: 60 }}
-        dpr={[1, 1.5]}
-        gl={{ antialias: true, alpha: true }}
+        camera={{ position: [0, 0, 8], fov: 50 }}
+        dpr={[1, 2]}
+        gl={{ antialias: true, alpha: true, stencil: false, depth: true }}
         style={{ background: "transparent" }}
       >
-        <ambientLight intensity={0.3} />
-        <pointLight position={[10, 10, 10]} intensity={0.5} color="#4F8EF7" />
-        <pointLight position={[-10, -10, -5]} intensity={0.3} color="#1A3C6E" />
-        <pointLight position={[0, 5, 5]} intensity={0.2} color="#ffffff" />
-        <Particles count={500} />
-        <ConnectedLines count={80} />
-        <InteractiveIcosahedron />
-        <PulsingTorus />
-        <SpinningOctahedron />
-        <BackgroundRing />
-        <DodecahedronFloat />
+        <ambientLight intensity={0.2} />
+        <pointLight position={[10, 10, 10]} intensity={1.0} color="#2dd4bf" />
+        <pointLight position={[-10, -10, -10]} intensity={0.6} color="#0d9488" />
+        <spotLight position={[0, 5, 0]} intensity={0.6} angle={0.15} penumbra={1} />
+
+        <Particles count={400} />
+        <ConnectedLines count={50} />
+
+        <RefractiveCrystal />
+
+        <Environment preset="city" />
       </Canvas>
     </div>
   )

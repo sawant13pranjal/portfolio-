@@ -3,12 +3,12 @@
 import { useRef, useEffect, useState } from "react"
 
 const skills = [
-  { name: "Figma", color: "#A259FF" },
-  { name: "Webflow", color: "#4353FF" },
-  { name: "AdobeXD", color: "#05F" },
-  { name: "Canva", color: "#61DAFB" },
-  { name: "UI Design", color: "#FF7262" },
-  { name: "Prototyping", color: "#00C853" },
+  { name: "Figma", color: "#2dd4bf" },
+  { name: "Webflow", color: "#0d9488" },
+  { name: "AdobeXD", color: "#14b8a6" },
+  { name: "Canva", color: "#5eead4" },
+  { name: "UI Design", color: "#0f766e" },
+  { name: "Prototyping", color: "#2dd4bf" },
 ]
 
 const stats = [
@@ -105,7 +105,7 @@ function OrbitRing() {
         >
           <div
             className="flex items-center gap-1.5 rounded-full border border-border/50 bg-card/80 px-3 py-1.5 text-xs font-medium text-foreground shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-primary/50"
-            style={{ boxShadow: `0 0 20px ${skill.color}15` }}
+            style={{ boxShadow: `0 0 20px oklch(0.72 0.16 185 / 0.1)` }}
           >
             <span
               className="inline-block h-2 w-2 rounded-full"
@@ -121,14 +121,14 @@ function OrbitRing() {
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-32 md:py-40">
+    <section id="about" className="relative py-16 md:py-24">
       {/* Background decorative elements */}
       <div className="absolute left-0 top-1/4 -z-10 h-96 w-96 rounded-full bg-primary/5 blur-[100px]" />
       <div className="absolute right-0 bottom-1/4 -z-10 h-64 w-64 rounded-full bg-[oklch(0.3_0.08_250/0.1)] blur-[80px]" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-12">
         {/* Section label */}
-        <div className="about-label mb-16 flex items-center gap-4">
+        <div className="about-label mb-12 flex items-center gap-4">
           <div className="h-px w-12 bg-gradient-to-r from-primary to-transparent" />
           <span className="text-xs uppercase tracking-[0.3em] text-primary">
             About Me
@@ -142,23 +142,26 @@ export default function AboutSection() {
               {/* Outer orbit ring with skill tags */}
               <OrbitRing />
 
-              {/* Static orbit rings */}
-              <div className="absolute inset-0 rounded-full border border-primary/8" />
+              {/* Static orbit rings - Restored with Spline Teal theme */}
+              <div className="absolute inset-0 rounded-full border border-primary/10" />
               <div className="absolute inset-4 rounded-full border border-primary/5" />
-              <div className="absolute inset-[-20px] rounded-full border border-dashed border-primary/6" />
+              <div className="absolute inset-[-20px] rounded-full border border-dashed border-primary/8" />
 
               {/* Center avatar */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="group relative flex h-52 w-52 items-center justify-center rounded-full border border-border/30 bg-gradient-to-br from-card to-card/60 shadow-2xl backdrop-blur-sm transition-all duration-500 hover:border-primary/30 md:h-64 md:w-64">
-                  <div className="relative flex h-40 w-40 items-center justify-center rounded-full bg-gradient-to-br from-primary/15 via-[oklch(0.3_0.08_250/0.2)] to-primary/10 md:h-48 md:w-48">
-                    <span
-                      className="select-none text-6xl font-bold text-primary transition-transform duration-500 group-hover:scale-110 md:text-7xl"
-                      style={{ fontFamily: "var(--font-display)" }}
-                    >
-                      PS
-                    </span>
-                    {/* Glow effect */}
-                    <div className="absolute inset-0 rounded-full bg-primary/5 blur-2xl transition-all duration-500 group-hover:bg-primary/10 group-hover:blur-3xl" />
+                <div className="group relative flex h-64 w-64 items-center justify-center">
+                  <div className="relative flex h-48 w-48 items-center justify-center">
+                    {/* Intense Background Glow - Spline Teal */}
+                    <div className="absolute inset-[-40%] rounded-full bg-[radial-gradient(circle,oklch(0.72_0.2_185/0.4)_0%,transparent_70%)] blur-3xl" />
+                    
+                    <img 
+                      src="/Yoga Pranjal.png" 
+                      alt="Avatar" 
+                      className="relative z-10 h-full w-full object-cover scale-150 transition-transform duration-500 animate-float"
+                    />
+                    
+                    {/* Minimal hover glow enhancement */}
+                    <div className="absolute inset-0 z-20 rounded-full bg-primary/5 blur-2xl transition-all duration-500 group-hover:bg-primary/10 pointer-events-none" />
                   </div>
                 </div>
               </div>
@@ -168,7 +171,7 @@ export default function AboutSection() {
           {/* Right: Bio text with reveal */}
           <div className="about-right flex flex-col justify-center">
             <h2
-              className="mb-8 text-4xl font-bold leading-tight tracking-tight md:text-5xl"
+              className="mb-6 text-4xl font-bold leading-tight tracking-tight md:text-5xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
               <span className="block text-foreground">Designing digital</span>
@@ -176,7 +179,7 @@ export default function AboutSection() {
               <span className="block text-foreground">that matter.</span>
             </h2>
 
-            <div className="mb-10 space-y-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+            <div className="mb-8 space-y-4 text-base leading-relaxed text-muted-foreground md:text-lg">
               <p className="about-text-line">
                 {"I'm Pranjal Sawant, a passionate UI/UX Designer with a keen eye for crafting intuitive, user-centered digital experiences. I specialize in turning complex problems into elegant, functional designs."}
               </p>
@@ -185,12 +188,14 @@ export default function AboutSection() {
               </p>
             </div>
 
-            {/* Stats with counters */}
+            {/* Stats - Reduced and made static to remove numeric loading effect */}
             <div className="grid grid-cols-3 gap-6">
               {stats.map((stat) => (
                 <div key={stat.label} className="about-stat group text-center">
-                  <AnimatedCounter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
-                  <div className="mt-2 text-xs text-muted-foreground transition-colors group-hover:text-foreground">
+                  <div className="text-4xl font-bold text-primary md:text-5xl" style={{ fontFamily: "var(--font-display)" }}>
+                    {stat.value}{stat.suffix}
+                  </div>
+                  <div className="mt-2 text-[10px] uppercase tracking-wider text-muted-foreground transition-colors group-hover:text-foreground">
                     {stat.label}
                   </div>
                 </div>
