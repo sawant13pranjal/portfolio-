@@ -110,6 +110,16 @@
   background-size: 256px 256px;
 }
 
+/* Dot grid overlay */
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(45, 212, 191, 0.15) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -322,22 +332,22 @@
 }
 
 .loader__circle:nth-of-type(1) {
-  background-color: #007aff;
+  background-color: #8B5CF6; /* Indigo */
   animation-delay: 0;
 }
 
 .loader__circle:nth-of-type(2) {
-  background-color: #ff2d55;
+  background-color: #38BDF8; /* Ocean Sky */
   animation-delay: 0.25s;
 }
 
 .loader__circle:nth-of-type(3) {
-  background-color: #34c759;
+  background-color: #059669; /* Forest Emerald */
   animation-delay: 0.5s;
 }
 
 .loader__circle:nth-of-type(4) {
-  background-color: #ff9500;
+  background-color: #FB7185; /* Coral Rose */
   animation-delay: 0.75s;
 }
 

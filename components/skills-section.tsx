@@ -11,7 +11,7 @@ const skillCategories = [
       </svg>
     ),
     skills: ["Figma", "Adobe XD", "Photoshop", "Canva"],
-    color: "#2dd4bf",
+    color: "#8B5CF6",
   },
   {
     category: "Development",
@@ -21,7 +21,7 @@ const skillCategories = [
       </svg>
     ),
     skills: ["Antigravity", "Webflow", "Framer", "WordPress"],
-    color: "#0d9488",
+    color: "#38BDF8",
   },
   {
     category: "UX Research",
@@ -31,7 +31,7 @@ const skillCategories = [
       </svg>
     ),
     skills: ["User Research", "Wireframing", "Prototyping", "Usability Testing", "Information Architecture"],
-    color: "#14b8a6",
+    color: "#059669",
   },
   {
     category: "Tools",
@@ -41,7 +41,7 @@ const skillCategories = [
       </svg>
     ),
     skills: ["Git", "VS Code", "Notion"],
-    color: "#5eead4",
+    color: "#FB7185",
   },
 ]
 
@@ -77,7 +77,7 @@ export default function SkillsSection() {
           className="skills-title mb-20 text-4xl font-bold tracking-tight md:text-6xl"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          My <span className="text-primary">toolkit</span>
+          My toolkit
         </h2>
 
         {/* Interactive skill cards with spotlight effect */}
@@ -85,10 +85,19 @@ export default function SkillsSection() {
           {skillCategories.map((cat) => (
             <div
               key={cat.category}
-              className="skill-card group relative overflow-hidden rounded-2xl border border-border/30 bg-card/40 p-6 backdrop-blur-sm transition-all duration-500 hover:border-primary/30 hover:shadow-[0_0_40px_-12px_oklch(0.72_0.16_185/0.2)]"
+              className="skill-card group relative overflow-hidden rounded-2xl border border-border/30 bg-card/40 p-6 backdrop-blur-sm transition-all duration-500"
               onMouseMove={onCardMouseMove}
+              style={{ 
+                "--hover-color": cat.color,
+              } as React.CSSProperties}
               data-hover
             >
+              {/* Dynamic Border and Glow on Hover */}
+              <div 
+                className="absolute inset-0 pointer-events-none rounded-2xl border border-transparent transition-colors duration-500 group-hover:border-[var(--hover-color)]/30 group-hover:shadow-[0_0_40px_-12px_var(--hover-color)]"
+                style={{ opacity: 0.4 }}
+              />
+
               {/* Spotlight glow that follows mouse */}
               <div
                 className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -104,7 +113,7 @@ export default function SkillsSection() {
                   style={{
                     background: `${cat.color}15`,
                     color: cat.color,
-                    boxShadow: `0 0 0px ${cat.color}00`,
+                    boxShadow: `0 0 20px ${cat.color}33`,
                   }}
                 >
                   {cat.icon}

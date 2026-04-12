@@ -13,7 +13,7 @@ const awards = [
     numVal: 0,
     prefix: "",
     year: "2023",
-    color: "#2dd4bf",
+    color: "#8B5CF6",
   },
   {
     title: "Smart India Hackathon 2024",
@@ -24,7 +24,7 @@ const awards = [
     numVal: 0,
     prefix: "",
     year: "2024",
-    color: "#0d9488",
+    color: "#38BDF8",
   },
   {
     title: "GD-PI Competition",
@@ -35,7 +35,7 @@ const awards = [
     numVal: 1,
     prefix: "#",
     year: "2026",
-    color: "#5eead4",
+    color: "#059669",
   },
   {
     title: "Debate Competition",
@@ -46,7 +46,7 @@ const awards = [
     numVal: 2,
     prefix: "#",
     year: "2024 & 2025",
-    color: "#14b8a6",
+    color: "#FB7185",
   },
 ]
 
