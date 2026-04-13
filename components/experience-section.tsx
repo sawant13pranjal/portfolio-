@@ -55,7 +55,7 @@ export default function ExperienceSection() {
   }, [])
 
   return (
-    <section id="experience" className="relative py-16 md:py-24">
+    <section id="experience" className="relative py-16 md:py-24 bg-secondary/10 border-y border-border/5">
       <div className="absolute right-0 top-1/3 -z-10 h-96 w-96 rounded-full bg-[oklch(0.3_0.08_185/0.1)] blur-[120px]" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-12">

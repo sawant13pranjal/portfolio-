@@ -61,7 +61,7 @@ export default function SkillsSection() {
   }, [])
 
   return (
-    <section id="skills" className="relative overflow-hidden py-16 md:py-24">
+    <section id="skills" className="relative overflow-hidden py-16 md:py-24 bg-card/20">
       <div className="absolute right-0 bottom-0 -z-10 h-96 w-96 rounded-full bg-primary/5 blur-[120px]" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-12">

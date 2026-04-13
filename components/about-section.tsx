@@ -121,7 +121,7 @@ function OrbitRing() {
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-16 md:py-24">
+    <section id="about" className="relative py-16 md:py-24 bg-gradient-to-b from-card/20 to-background">
       {/* Background decorative elements */}
       <div className="absolute left-0 top-1/4 -z-10 h-96 w-96 rounded-full bg-primary/5 blur-[100px]" />
       <div className="absolute right-0 bottom-1/4 -z-10 h-64 w-64 rounded-full bg-[oklch(0.3_0.08_250/0.1)] blur-[80px]" />

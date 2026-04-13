@@ -110,16 +110,6 @@
   background-size: 256px 256px;
 }
 
-/* Dot grid overlay */
-.dot-grid {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(45, 212, 191, 0.15) 1px, transparent 1px);
-  background-size: 30px 30px;
-}
-
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

@@ -75,7 +75,10 @@ export default function HeroSection() {
       ref={heroRef}
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#050508]"
     >
-      {/* Spline Background Container - Full Width with Gradient Mask to hide edges */}
+      {/* Background Glow behind 3D - Fixed "no background" issue */}
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_60%_50%,oklch(0.3_0.08_185/0.15)_0%,transparent_70%)] pointer-events-none" />
+
+      {/* Spline Background Container - Local to Hero */}
       <div
         className="absolute inset-0 z-0 h-full w-full overflow-hidden"
         style={{

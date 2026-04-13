@@ -18,7 +18,7 @@ const projects = [
     color: "#2dd4bf",
     year: "2026",
     details: "Designed the complete product line packaging, brand guidelines, and digital presence for Ampere Cable. The project involved creating a cohesive visual system that communicates premium quality and modern technology.",
-    link: "https://www.figma.com/proto/j6UQNaWrvbpguUrF1fD6LB/Amppere-cable?node-id=2239-3623&page-id=0%3A1&starting-point-node-id=2239%3A3623&t=4yHyg5XTbFB3l9kr-1",
+    link: "https://www.figma.com/proto/j6UQNaWrvbpguUrF1fD6LB/Amppere-cable?node-id=2239-3623&p=f&viewport=123%2C468%2C0.04&t=qwhTHToLqsLUCNWz-1&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=2239%3A3623&page-id=0%3A1",
   },
   {
     title: "CaseTorch",
@@ -30,7 +30,7 @@ const projects = [
     color: "#0d9488",
     year: "2025",
     details: "Built an end-to-end legal intelligence platform featuring AI-powered case search, document management, and collaborative research tools for law firms. Optimized complex legal workflows to save researchers up to 15 hours per week.",
-    link: "https://www.figma.com/design/66Ii2pKtG1w1CBdWZHv4lA/Responsive-Ui-casetorch?node-id=0-1&t=DhCCsXWX3F2KbWin-1",
+    link: "https://www.figma.com/proto/6eYwK9cY9e1wVGbu899joZ/casetorch?page-id=0%3A1&node-id=2015-9182&p=f&viewport=225%2C288%2C0.05&t=MqrFDV275ul3gnIt-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=2015%3A9182&show-proto-sidebar=1",
   },
   {
     title: "Netflix Clone",
@@ -54,7 +54,7 @@ const projects = [
     color: "#14b8a6",
     year: "2026",
     details: "Designed and developed a stunning portfolio website that showcases photography and film work through immersive galleries, parallax scrolling, and cinematic transitions. Built on Webflow.",
-    link: "https://www.figma.com/design/YxcAobcz5RtosVDIUTZDvp/SS-Design?node-id=0-1&t=DB3aMwPTDo1XR9Xz-1",
+    link: "https://www.figma.com/proto/YxcAobcz5RtosVDIUTZDvp/SS-Design?node-id=3-43&p=f&viewport=685%2C617%2C0.04&t=ttVvr8S4SOLonKG6-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=3%3A43&show-proto-sidebar=1&page-id=0%3A1",
   },
   {
     title: "NAAC Portal",

@@ -49,7 +49,6 @@ export default function RootLayout({
           forcedTheme="dark"
           disableTransitionOnChange
         >
-          <div className="dot-grid" />
           {children}
           <FloatingContact />
         </ThemeProvider>

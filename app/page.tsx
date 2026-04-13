@@ -14,7 +14,7 @@ import LoadingScreen from "@/components/loading-screen"
 const CustomCursor = dynamic(() => import("@/components/custom-cursor"), { ssr: false })
 const SmoothScroll = dynamic(() => import("@/components/smooth-scroll"), { ssr: false })
 const AnimationController = dynamic(() => import("@/components/animation-controller"), { ssr: false })
-const Scene3D = dynamic(() => import("@/components/scene-3d"), { ssr: false })
+const SplineBackground = dynamic(() => import("@/components/spline-background"), { ssr: false })
 
 export default function Home() {
   return (
@@ -23,7 +23,6 @@ export default function Home() {
       <CustomCursor />
       <SmoothScroll />
       <AnimationController />
-      <Scene3D />
 
       {/* Noise overlay */}
       <div className="noise-overlay" />

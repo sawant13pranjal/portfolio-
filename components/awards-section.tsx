@@ -13,7 +13,7 @@ const awards = [
     numVal: 0,
     prefix: "",
     year: "2023",
-    color: "#8B5CF6",
+    color: "#2dd4bf",
   },
   {
     title: "Smart India Hackathon 2024",
@@ -24,7 +24,7 @@ const awards = [
     numVal: 0,
     prefix: "",
     year: "2024",
-    color: "#38BDF8",
+    color: "#14b8a6",
   },
   {
     title: "GD-PI Competition",
@@ -35,7 +35,7 @@ const awards = [
     numVal: 1,
     prefix: "#",
     year: "2026",
-    color: "#059669",
+    color: "#0d9488",
   },
   {
     title: "Debate Competition",
@@ -46,7 +46,7 @@ const awards = [
     numVal: 2,
     prefix: "#",
     year: "2024 & 2025",
-    color: "#FB7185",
+    color: "#2dd4bf",
   },
 ]
 
@@ -107,7 +107,7 @@ export default function AwardsSection() {
   }, [])
 
   return (
-    <section id="awards" className="relative py-16 md:py-24">
+    <section id="awards" className="relative py-16 md:py-24 bg-card/20 border-y border-border/10">
       <div className="absolute left-1/3 top-0 -z-10 h-96 w-96 rounded-full bg-[oklch(0.3_0.08_185/0.1)] blur-[120px]" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-12">
