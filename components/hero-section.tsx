@@ -209,7 +209,7 @@ export default function HeroSection() {
       <div className="absolute right-0 top-1/3 -z-10 h-96 w-96 rounded-full bg-[oklch(0.3_0.08_185/0.1)] blur-[120px]" />
       <div className="absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 rotate-90 md:block">
         <span className="text-[10px] tracking-[0.5em] text-muted-foreground/30">
-          BASED IN INDIA
+          GRAPHIC DESIGNER
         </span>
       </div>
     </section>

@@ -10,12 +10,26 @@ import {
   Github,
   Linkedin,
   Twitter,
+  Dribbble,
 } from "lucide-react"
 
 const socials = [
   { name: "GitHub", icon: Github, link: "https://github.com/sawant13pranjal" },
   { name: "LinkedIn", icon: Linkedin, link: "https://linkedin.com/in/pranjalsawant1301" },
-
+  { 
+    name: "Behance", 
+    icon: () => (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+        <path d="M9 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+        <path d="M13.5 13H19"/>
+        <path d="M10 16H8a4 4 0 0 1 0-8h2c1.1 0 2 .9 2 2v1a2 2 0 0 1-2 2h-2"/>
+        <path d="M19 10a2.5 2.5 0 0 0-5 0v3h5"/>
+        <path d="M10 12h2a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-2"/>
+      </svg>
+    ), 
+    link: "https://www.behance.net/pranjalsawant" 
+  },
+  { name: "Dribbble", icon: Dribbble, link: "https://dribbble.com/pranjal-sawant" },
 ]
 
 // Canvas wave background
