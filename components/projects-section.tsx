@@ -102,6 +102,31 @@ export default function ProjectsSection() {
     return () => ctx.revert()
   }, [])
 
+  // Inactivity detection for horizontal scroll hint
+  const [isIdle, setIsIdle] = useState(false)
+  useEffect(() => {
+    const timer = setTimeout(() => setIsIdle(true), 5000)
+    const resetIdle = () => {
+      setIsIdle(false)
+      clearTimeout(timer)
+    }
+
+    // Reset idle timer on any movement within the section
+    const track = trackRef.current
+    if (track) {
+      track.addEventListener("mousemove", resetIdle)
+      track.addEventListener("touchstart", resetIdle)
+    }
+
+    return () => {
+      clearTimeout(timer)
+      if (track) {
+        track.removeEventListener("mousemove", resetIdle)
+        track.removeEventListener("touchstart", resetIdle)
+      }
+    }
+  }, [isIdle])
+
   // 3D card tilt
   const onCardMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget
@@ -149,12 +174,18 @@ export default function ProjectsSection() {
             <p className="text-base text-muted-foreground">
               Scroll to explore my selected works across branding, UI/UX design, and web development.
             </p>
-            <div className="mt-8 flex items-center gap-3 text-sm text-muted-foreground/60">
+            <div className={`mt-8 flex items-center gap-3 text-sm transition-all duration-700 ${isIdle ? "scale-105" : "text-muted-foreground/60"
+              }`}>
               <div className="flex items-center gap-1">
-                <div className="h-px w-8 bg-primary/50" />
-                <ArrowRight className="h-4 w-4 text-primary/50" />
+                <div className={`h-px w-8 transition-all duration-700 ${isIdle ? "bg-primary w-12" : "bg-primary/50"
+                  }`} />
+                <ArrowRight className={`h-4 w-4 transition-all duration-700 ${isIdle ? "text-primary translate-x-1" : "text-primary/50"
+                  }`} />
               </div>
-              Keep scrolling
+              <span className={`transition-all duration-700 ${isIdle ? "text-primary font-bold shadow-primary/20 drop-shadow-sm" : ""
+                }`}>
+                Keep scrolling
+              </span>
             </div>
           </div>
 

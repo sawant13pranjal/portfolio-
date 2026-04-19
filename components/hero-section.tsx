@@ -69,6 +69,25 @@ export default function HeroSection() {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
   }
 
+  // Inactivity detection for "Tap to explore" highlight
+  const [isIdle, setIsIdle] = useState(false)
+  useEffect(() => {
+    const timer = setTimeout(() => setIsIdle(true), 5000)
+    const resetIdle = () => {
+      setIsIdle(false)
+      clearTimeout(timer)
+    }
+
+    window.addEventListener("scroll", resetIdle, { once: true })
+    window.addEventListener("touchstart", resetIdle, { once: true })
+    
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener("scroll", resetIdle)
+      window.removeEventListener("touchstart", resetIdle)
+    }
+  }, [isIdle])
+
   return (
     <section
       id="hero"
@@ -191,15 +210,19 @@ export default function HeroSection() {
       {/* Scroll indicator */}
       <button
         onClick={scrollToAbout}
-        className="hero-scroll absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3"
+        className={`hero-scroll absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 transition-all duration-700 ${isIdle ? "scale-110" : "opacity-60"
+          }`}
         data-hover
         aria-label="Scroll to about section"
       >
-        <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground/60">
+        <span className={`text-[10px] uppercase tracking-[0.3em] transition-colors duration-700 ${isIdle ? "text-primary font-bold" : "text-muted-foreground/60"
+          }`}>
           Tap to explore
         </span>
-        <div className="relative flex h-10 w-5 items-start justify-center rounded-full border border-primary/30 p-1">
-          <div className="h-2 w-1 animate-bounce rounded-full bg-primary" />
+        <div className={`relative flex h-10 w-5 items-start justify-center rounded-full border p-1 transition-all duration-700 ${isIdle ? "border-primary shadow-[0_0_20px_oklch(0.72_0.16_185/0.4)] bg-primary/10" : "border-primary/30"
+          }`}>
+          <div className={`h-2 w-1 animate-bounce rounded-full transition-colors duration-700 ${isIdle ? "bg-primary shadow-[0_0_10px_oklch(0.72_0.16_185)]" : "bg-primary/50"
+            }`} />
         </div>
       </button>
 

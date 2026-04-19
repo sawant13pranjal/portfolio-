@@ -7,7 +7,7 @@ const experiences = [
   {
     role: "UI/UX Design Intern",
     company: "Haloxion",
-    period: "Sep 2024 \u2014 May 2025",
+    period: "Sep 2024 — May 2025",
     description:
       "Worked on the Amppere Cable brand, contributing to design, research, and digital presence.",
     bullets: [
@@ -15,8 +15,8 @@ const experiences = [
       "Conducted R&D on industry trends and user behavior",
       "Created wireframes and UI/UX prototypes",
     ],
-    link: "#",
-    highlight: true,
+    link: null,
+    highlight: false,
   },
   {
     role: "Freelance UI/UX Designer",
@@ -99,9 +99,8 @@ export default function ExperienceSection() {
 
               {/* Right Column: Details & Description */}
               <div
-                className={`relative rounded-2xl border border-transparent p-6 transition-all duration-500 hover:border-border/30 hover:bg-card/20 hover:backdrop-blur-sm lg:p-8 ${
-                  exp.highlight ? "bg-card/10 lg:pl-12" : "lg:pl-12"
-                }`}
+                className={`relative rounded-2xl border border-transparent p-6 transition-all duration-500 hover:border-border/30 hover:bg-card/20 hover:backdrop-blur-sm lg:p-8 ${exp.highlight ? "bg-card/10 lg:pl-12" : "lg:pl-12"
+                  }`}
                 onMouseMove={onCardMouseMove}
               >
                 {/* Spotlight glow */}
@@ -115,7 +114,7 @@ export default function ExperienceSection() {
                 <span className="mb-4 block text-xs font-semibold uppercase tracking-widest text-muted-foreground/50">
                   {exp.period}
                 </span>
-                
+
                 <p className="max-w-3xl text-base leading-relaxed text-muted-foreground md:text-lg">
                   {exp.description}
                 </p>
