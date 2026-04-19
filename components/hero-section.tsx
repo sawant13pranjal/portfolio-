@@ -80,7 +80,7 @@ export default function HeroSection() {
 
     window.addEventListener("scroll", resetIdle, { once: true })
     window.addEventListener("touchstart", resetIdle, { once: true })
-    
+
     return () => {
       clearTimeout(timer)
       window.removeEventListener("scroll", resetIdle)
@@ -161,7 +161,7 @@ export default function HeroSection() {
               transition: "transform 0.15s ease-out",
             }}
           >
-            to click —
+            to click
           </span>
           <span
             className="mt-4 block text-3xl font-light text-primary/80 lg:text-4xl"
