@@ -58,8 +58,9 @@ export default function Navbar() {
         </div>
 
         <a
-          href="/resume.pdf"
-          download
+          href="https://drive.google.com/drive/folders/1mtKPTk0uTM-k0-i04PC68SGIQyOoLLs2?usp=drive_link"
+          target="_blank"
+          rel="noopener noreferrer"
           className="rounded-full border border-primary/30 bg-primary/10 px-5 py-2 text-sm font-medium text-primary transition-all hover:bg-primary/20 hover:border-primary/50"
           data-hover
         >
